@@ -1,0 +1,37 @@
+<div class="jumbotron text-center">
+    <h1>Recruitment</h1>
+    <p>A company that finds suitable employees for software companies</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <!--תצוגה ראשונית-->
+            <input type="button" value="get all candidates" (click)="getCandidates()" class="InitialView
+            ">
+            <br>
+            <input type="button" value="filtering" (click)="Filtering()" class="InitialView">
+            <!--אופציות הסינון -->
+            <div *ngIf="showFilterOptions" class="showFilterOptions">
+                <p><input type="checkbox" #selectedJunior>select junior</p>
+                <!--תצוגת שפות -->
+                <input list="languages" #selectedLanguage>
+                <datalist id="languages">
+                    <option *ngFor="let language of languagesList" [value]=language.id>{{language.name}}</option>
+                </datalist>
+                <!--סינון -->
+                <br>
+                <input type="button" value="to filter" (click)="toFilter(selectedLanguage.value,selectedJunior.checked)"
+                    class="filterOptionsView">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <!--תצוגת מועמדים -->
+            <div>
+                <div *ngFor="let candidate of candidatesList">
+                    <app-candidate [currentCandidate]="candidate"></app-candidate>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
