@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class LanguageService {
   
-  private languages:Array<Language>=[]
+  public languages:Array<Language>=[]
   Url = "https://localhost:44391/api/Candidate/";
 
   constructor(private myHttp:HttpClient) { }

@@ -11,9 +11,7 @@ import { CandidateService } from 'src/app/services/candidate.service';
 })
 export class MainComponent implements OnInit {
 
-  constructor(private languageService: LanguageService, private candidateService: CandidateService) { }
-  candidatesList: Array<Candidate> = [];
-  languagesList: Array<Language> = []
+  constructor(public languageService: LanguageService, public candidateService: CandidateService) { }
   showCandidate: boolean = false;
   showLanguage: boolean = false;
   showFilterOptions: boolean = false;
@@ -22,20 +20,23 @@ export class MainComponent implements OnInit {
   }
 
   getCandidates() {
-    this.candidatesList = this.candidateService.getCandidates()
+    this.candidateService.getCandidates()
     this.showCandidate = !this.showCandidate
   }
 
   Filtering() {
     this.showFilterOptions = !this.showFilterOptions
-    this.languagesList = this.languageService.getLanguages()
+    this.languageService.getLanguages()
     //לטפל באפשור של הסינון רק על תצוגת עובדים פועלת
   }
-  
-  toFilter(selectedLanguage: string,selectedJunior:boolean) {
+
+  toFilter(selectedLanguage: string, selectedJunior: boolean) {
     if (selectedLanguage == "")
       alert("No language selected")
-    else
-    this.candidatesList = this.candidateService.getMatchCandidates(Number(selectedLanguage), selectedJunior)
+    else {
+      this.candidateService.getMatchCandidates(Number(selectedLanguage), selectedJunior)
+      // if (this.candidateService.matchCandidates = [])
+      //   alert("There are no suitable candidates")
+    }
   }
 }

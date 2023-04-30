@@ -11,12 +11,11 @@ export class CandidateComponent implements OnInit {
 
   constructor() { }
   @Input("currentCandidate") candidate:Candidate = new Candidate(0,"",0,"");
-  languages:Array<Language>=this.candidate.LanguagesList
+  languages:Array<Language>=this.candidate.languages
 
   ngOnInit(): void {
   }
   getLanguges(){
-      console.log(this.candidate)
-      alert("hello " + this.candidate)
+      alert(this.candidate.languages.length)
   }
 }

@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class CandidateService {
 
-  private candidates: Array<Candidate> = []
-  private matchCandidates: Array<Candidate> = []
+  public candidates: Array<Candidate> = []
+  public matchCandidates: Array<Candidate> = []
   Url = "https://localhost:44391/api/Candidate/";
 
   constructor(private myHttp: HttpClient) { }
@@ -22,29 +22,27 @@ export class CandidateService {
     this.getCandidatesList().subscribe(
       (myData) => {
         this.candidates = myData;
+        return this.candidates
       },
       myErr => {
-        alert("אני לא מתחבר לרשימת מועמדים בשרת"+myErr.message)
+        alert("There is no connection to the list of candidates on the server" + myErr.message)
       }
     );
-    return this.candidates
   }
-  private getMatchCandidatesList(languageId:number,junior:boolean): Observable<Array<Candidate>> {
-    return this.myHttp.get<Array<Candidate>>(this.Url + "GetAllMatchCandidates?languageId="+languageId+"&junior="+junior)
+  private getMatchCandidatesList(languageId: number, junior: boolean): Observable<Array<Candidate>> {
+    return this.myHttp.get<Array<Candidate>>(this.Url + "GetAllMatchCandidates?languageId=" + languageId + "&junior=" + junior)
   }
 
-  getMatchCandidates(languageId:number,junior:boolean) {
-    this.getMatchCandidatesList(languageId,junior).subscribe(
+  getMatchCandidates(languageId: number, junior: boolean) {
+    this.getMatchCandidatesList(languageId, junior).subscribe(
       (myData) => {
         this.matchCandidates = myData;
-        // alert(this.matchCandidates[0].name)
+        this.candidates = this.matchCandidates
+        return this.matchCandidates
       },
       myErr => {
-        alert("אני לא מתחבר לרשימת מועמדים בשרת"+myErr.message)
+        alert("There is no connection to the list of candidates on the server" + myErr.message)
       }
     );
-    if(this.matchCandidates=[])
-      alert("There are no suitable candidates")
-    return this.matchCandidates
   }
 }

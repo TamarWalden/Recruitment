@@ -17,7 +17,7 @@
                 <!--תצוגת שפות -->
                 <input list="languages" #selectedLanguage>
                 <datalist id="languages">
-                    <option *ngFor="let language of languagesList" [value]=language.id>{{language.name}}</option>
+                    <option *ngFor="let language of languageService.languages" [value]=language.id>{{language.name}}</option>
                 </datalist>
                 <!--סינון -->
                 <br>
@@ -28,7 +28,7 @@
         <div class="col-sm-4">
             <!--תצוגת מועמדים -->
             <div>
-                <div *ngFor="let candidate of candidatesList">
+                <div *ngFor="let candidate of candidateService.candidates">
                     <app-candidate [currentCandidate]="candidate"></app-candidate>
                 </div>
             </div>
