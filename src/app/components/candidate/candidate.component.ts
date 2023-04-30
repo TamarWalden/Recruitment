@@ -12,10 +12,12 @@ export class CandidateComponent implements OnInit {
   constructor() { }
   @Input("currentCandidate") candidate:Candidate = new Candidate(0,"",0,"");
   languages:Array<Language>=this.candidate.languages
-
+  showLanguages:boolean=false
+  
   ngOnInit(): void {
   }
+  
   getLanguges(){
-      alert(this.candidate.languages.length)
+    this.showLanguages=!this.showLanguages
   }
 }

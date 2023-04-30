@@ -1,7 +1,12 @@
 <div class="candidate">
-    <p>id:  {{candidate.id}}</p>
-    <p>name:  {{candidate.name}}</p>
-    <p>start work:  {{candidate.yearOfStartWork}}</p>
-    <p>date of update details:  {{candidate.lastUpdateDetails}}</p>
+    <p>id: {{candidate.id}}</p>
+    <p>name: {{candidate.name}}</p>
+    <p>start work: {{candidate.yearOfStartWork}}</p>
+    <p>date of update details: {{candidate.lastUpdateDetails}}</p>
+    <input type="button" value="get languages" (click)="getLanguges()">
+    <div *ngIf="showLanguages">
+        <div *ngFor="let language of candidate.languages">
+            <app-language [currentLanguage]="language"></app-language>
+        </div>
+    </div>
 </div>
-
